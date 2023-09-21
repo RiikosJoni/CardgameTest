@@ -4,7 +4,7 @@ import "./App.css"
 export default function App(){
   return(
     <>
-      <h1>Gary-Card Game loaded.</h1>
+      <h1>Gary-Cards.</h1>
       <Card/>
     </>
   );

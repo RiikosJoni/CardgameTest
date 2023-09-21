@@ -2,4 +2,19 @@
   width: 240px;
   height: 400px;
   background-color: chocolate;
+  border-radius: 16px;
+  border: 8px solid gray;
+  box-shadow: 2px, 2px, 8px, 2px darkolivegreen;
+  overflow: hidden;
+}
+
+.stat-list{
+  margin:0;
+  padding: 0 8px;
+}
+
+.stat-list-item{
+  list-style: none;
+  display: flex;
+  justify-content:space-between;
 }

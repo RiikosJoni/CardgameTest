@@ -1,30 +1,15 @@
 
-export default function Card(){
+export default function Card({card}){
     return(
         <div className = "card">
-            <img src="https://placebeard.it/240x200"></img>
+            <img src={card.image}></img>
             <ul className="stat-list">
-                <li className="stat-list-item">
-                    <span>Rudeness: </span>
-                    <span>15%</span>
-                </li>
-                <li className="stat-list-item">
-                    <span>Pollution: </span>
-                    <span>75M²</span>
-                </li>
-                <li className="stat-list-item">
-                    <span>Destruction: </span>
-                    <span>5ML</span>
-                </li>
-                <li className="stat-list-item">
-                    <span>Weight: </span>
-                    <span>68Kg</span>
-                </li>
-                <h3> </h3>
-                <li className="stat-list-item">
-                    <span>Rarity: </span>
-                    <span>Extra Rare</span>
-                </li>
+                {card.stats.map(stat =>(
+                    <li className="stat-list-item">
+                        <span>{stat.name}</span>
+                        <span>{stat.value}</span>
+                    </li>
+                ))}
             </ul>
         </div>
     );

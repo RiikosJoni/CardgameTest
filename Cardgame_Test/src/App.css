@@ -24,3 +24,21 @@
   align-self: center;
   min-width: 10vw;
 }
+
+.card-list{
+  display: flex;
+}
+
+.game{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card-list-item.player{
+  margin-left: calc(2vw - 220px);
+}
+
+.card-list-item.enemy{
+  margin-right: calc(2vw - 220px);
+}

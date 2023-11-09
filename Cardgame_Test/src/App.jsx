@@ -5,7 +5,7 @@ import { useState } from 'react'
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min +1)+min);
 
 const playerCard = {
-  image: 'https://placebeard.it/240x200?image=' + index,
+  image: 'https://placebeard.it/240x200',
   stats: [{name:'Rudeness: ', value: getRandomInt(0,150) + '%'},
           {name:'Pollution: ', value: getRandomInt(0,150) + '%'},
           {name:'Destruction: ', value: getRandomInt(1,99) * 100 * (10 * getRandomInt(0,1) + 1) + ' ha'},
@@ -14,7 +14,7 @@ const playerCard = {
 }
 
 const enemyCard = {
-  image: 'https://placebeard.it/240x200?image=' + index,
+  image: 'https://placebeard.it/240x200',
   stats: [{name:'Rudeness: ', value: getRandomInt(0,150) + '%'},
           {name:'Pollution: ', value: getRandomInt(0,150) + '%'},
           {name:'Destruction: ', value: getRandomInt(1,99) * 100 * (10 * getRandomInt(0,1) + 1) + ' ha'},
@@ -38,8 +38,8 @@ const dealCards =()=>{
   return {
     player: deck.slice(0,half),
     enemy: deck.slice(half)
-  }
-}
+  };
+};
 
 export default function App(){
 
@@ -65,14 +65,29 @@ export default function App(){
     <>
       <h1>Gary-Cards.</h1>
       <div className='game'>
-        <Card card={cards.player[0]}/>
+        <ul className='card-list'>
+          {cards.player.map(pCard =>(
+            <li className='card-list-item player' key={pCard.id}>
+              <Card card={pCard}/>
+            </li>
+          ))}
+        </ul>
+
         <div className='center-area'>
           <p>{result || 'Press the button'}</p>
           <button onClick={compareCards} type="button">Play</button>
         </div>
-        <Card card={cards.enemy[0]}/>
+        
+        <ul className='card-list'>
+          {cards.enemy.map(eCard =>(
+            <li className='card-list-item enemy' key={eCard.id}>
+              <Card card={eCard}/>
+            </li>
+          ))}
+        </ul>
+
         {console.log(dealCards())}
       </div>
     </>
   );
-}
+};

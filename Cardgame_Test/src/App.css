@@ -27,6 +27,7 @@
 
 .card-list{
   display: flex;
+  flex-direction: row-reverse;
 }
 
 .game{
@@ -41,4 +42,21 @@
 
 .card-list-item.enemy{
   margin-right: calc(2vw - 220px);
+  direction: ltr;
+}
+
+.card-list.enemy{
+  direction: rtl;
+}
+
+.play-button{
+  width: 160px;
+  height: 80px;
+  align-self: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.card.back{
+  background-color: saddlebrown;
 }

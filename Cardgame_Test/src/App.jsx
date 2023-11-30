@@ -1,6 +1,7 @@
 import Card from './components/Card'
 import "./App.css"
 import { useState } from 'react'
+import PlayButton from './components/PlayButton';
 
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min +1)+min);
 
@@ -35,11 +36,20 @@ const createCard = index =>({
 const deck = Array(16).fill(null).map((_,index) => createCard(index));
 const half = Math.ceil(deck.length / 2);
 const dealCards =()=>{
+  shuffle(deck);
   return {
     player: deck.slice(0,half),
     enemy: deck.slice(half)
   };
 };
+
+function shuffle(array){
+  for(let i = array.length -1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 export default function App(){
 
@@ -66,19 +76,19 @@ export default function App(){
       <h1>Gary-Cards.</h1>
       <div className='game'>
         <ul className='card-list'>
-          {cards.player.map(pCard =>(
+          {cards.player.map((pCard, index) =>(
             <li className='card-list-item player' key={pCard.id}>
-              <Card card={pCard}/>
+              <Card card={index === 0 ? pCard : null}/>
             </li>
           ))}
         </ul>
 
         <div className='center-area'>
           <p>{result || 'Press the button'}</p>
-          <button onClick={compareCards} type="button">Play</button>
+          <PlayButton text={'Play'} handleClick={compareCards} />
         </div>
-        
-        <ul className='card-list'>
+
+        <ul className='card-list enemy'>
           {cards.enemy.map(eCard =>(
             <li className='card-list-item enemy' key={eCard.id}>
               <Card card={eCard}/>

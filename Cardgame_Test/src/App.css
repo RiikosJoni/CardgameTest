@@ -58,5 +58,11 @@
 }
 
 .card.back{
-  background-color: saddlebrown;
+  width: 216px;
+  height: 360px;
+  background-color: rgb(100, 69, 46);
+  border: 8px solid rgb(70, 69, 67);
+  border-radius: 16px;
+  box-shadow: 2px, 2px, 8px, 2px darkolivegreen;
+  overflow: hidden;
 }

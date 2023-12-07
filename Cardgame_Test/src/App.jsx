@@ -55,6 +55,7 @@ export default function App(){
 
   const[result, setResult] = useState('');
   const[cards, setCards] = useState(dealCards);
+  const[gameState, setGameState] = useState('play');
 
   function compareCards(){
     console.log("The battle of the Garies has started!");
@@ -63,12 +64,29 @@ export default function App(){
     const enemyStat = cards.enemy[0].stats[0];
 
     if(playerStat.value === enemyStat.value){
-      setResult("It's a Draw!");
+      setResult("The Garies were as Gary as the other!");
     }
     else if(playerStat.value > enemyStat.value){
       setResult("Your Gary was the Gariest!");
     }
     else { setResult("Your Gary was the most Garyless..."); }
+    setGameState("result");
+  }
+
+  function nextRound(){
+    setCards(cards =>{
+      const playedCards = [{...cards.player[0]}, {...cards.enemy[0]}]
+      const player = cards.player.slice(1);
+      const enemy = cards.enemy.slice(1);
+      if(result === "The Garies were as Gary as the other!"){
+        return(
+          player,
+          enemy
+        );
+      }
+    });
+    setGameState('play');
+    setResult('');
   }
 
   return(
@@ -85,7 +103,12 @@ export default function App(){
 
         <div className='center-area'>
           <p>{result || 'Press the button'}</p>
-          <PlayButton text={'Play'} handleClick={compareCards} />
+          {
+            gameState == 'play' ?
+            ( <PlayButton text={'Play'} handleClick={compareCards} />)
+            :
+            ( <PlayButton text={'Next'} handleClick={nextRound} />) 
+          }
         </div>
 
         <ul className='card-list enemy'>
